@@ -16,7 +16,7 @@
             <Grid Grid.Row="2" Background="#445c93">
                 </Grid>
         <Grid Background="#bae3e8">
-        <Image Source="Resources/images.png" HorizontalAlignment="Left">
+            <Image Source="Resources/images.png" HorizontalAlignment="Left">
             </Image>
         <TextBlock Text="info" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
