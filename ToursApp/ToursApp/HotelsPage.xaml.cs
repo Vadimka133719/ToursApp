@@ -23,11 +23,51 @@ namespace ToursApp
         public HotelsPage()
         {
             InitializeComponent();
+            //DGridHotels.ItemsSource = ToursBaseEntities.GetContext().Hotel.ToList();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new AddEditPage());
+        }
+        private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+            Manager.MainFrame.Navigate(new AddEditPage((sender as Button).DataContext as Hotel));
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var hotelsForRemoving=DGridHotels.SelectedItems.Cast<Hotel>().ToList();
+            if(MessageBox.Show($"Are you sure you want to delete {hotelsForRemoving.Count()} elements?","Attention",
+               MessageBoxButton.YesNo,MessageBoxImage.Question)==MessageBoxResult.Yes)
+            {
+                try
+                {
+                    ToursBaseEntities.GetContext().Hotel.RemoveRange(hotelsForRemoving);
+                    ToursBaseEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Deleted!");
+
+                    DGridHotels.ItemsSource = ToursBaseEntities.GetContext().Hotel.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(Visibility== Visibility.Visible)
+            {
+                ToursBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DGridHotels.ItemsSource= ToursBaseEntities.GetContext().Hotel.ToList();
+            }
         }
     }
 }
