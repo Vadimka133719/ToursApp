@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -25,6 +26,45 @@ namespace ToursApp
             InitializeComponent();
             MainFrame.Navigate(new HotelsPage());
             Manager.MainFrame = MainFrame;
+            ImportTours();
+        }
+        private void ImportTours()
+        {
+            
+            var fileData = File.ReadAllLines(@"C:\Users\kvm04\OneDrive\Рабочий стол\Новая папка\Туры.txt");
+            var Images = Directory.GetFiles(@"C:\Users\kvm04\OneDrive\Рабочий стол\Новая папка\Фотографии Туров");
+
+            foreach ( var line in fileData ) 
+            {
+                var data = line.Split('\t');
+
+                var tempTour = new Tour
+                {
+                    Name = data[0].Replace("\"", ""),
+                    TicketCount = int.Parse(data[2]),
+                    Price = decimal.Parse(data[3]),
+                    IsActual = (data[4] == "0") ? false : true
+                };
+
+                foreach (var tourType in data[5].Split(new string[] {","}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    var currenType = ToursBaseEntities.GetContext().Type.ToList().FirstOrDefault(p => p.Name == tourType);
+                    if (currenType != null)
+                        tempTour.Type.Add(currenType);
+
+                }
+
+                try
+                {
+                    tempTour.ImagePreview=File.ReadAllBytes(Images.FirstOrDefault(p=>p.Contains(tempTour.Name)));
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                ToursBaseEntities.GetContext().Tour.Add(tempTour);
+                ToursBaseEntities.GetContext().SaveChanges();
+            }
         }
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
