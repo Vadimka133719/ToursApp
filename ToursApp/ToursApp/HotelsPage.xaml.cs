@@ -48,11 +48,11 @@ namespace ToursApp
             {
                 try
                 {
-                    ToursBaseEntities.GetContext().Hotel.RemoveRange(hotelsForRemoving);
+                    ToursBaseEntities.GetContext().Hotels.RemoveRange(hotelsForRemoving);
                     ToursBaseEntities.GetContext().SaveChanges();
                     MessageBox.Show("Deleted!");
 
-                    DGridHotels.ItemsSource = ToursBaseEntities.GetContext().Hotel.ToList();
+                    DGridHotels.ItemsSource = ToursBaseEntities.GetContext().Hotels.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -66,7 +66,7 @@ namespace ToursApp
             if(Visibility== Visibility.Visible)
             {
                 ToursBaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DGridHotels.ItemsSource= ToursBaseEntities.GetContext().Hotel.ToList();
+                DGridHotels.ItemsSource= ToursBaseEntities.GetContext().Hotels.ToList();
             }
         }
     }

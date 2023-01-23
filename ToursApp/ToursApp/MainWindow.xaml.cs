@@ -24,7 +24,7 @@ namespace ToursApp
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new HotelsPage());
+            MainFrame.Navigate(new ToursPage());
             Manager.MainFrame = MainFrame;
             ImportTours();
         }
@@ -46,11 +46,11 @@ namespace ToursApp
                     IsActual = (data[4] == "0") ? false : true
                 };
 
-                foreach (var tourType in data[5].Split(new string[] {","}, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var tourType in data[5].Replace("\"","").Split(new string[] {", "}, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    var currenType = ToursBaseEntities.GetContext().Type.ToList().FirstOrDefault(p => p.Name == tourType);
+                    var currenType = ToursBaseEntities.GetContext().Types.ToList().FirstOrDefault(p => p.Name == tourType);
                     if (currenType != null)
-                        tempTour.Type.Add(currenType);
+                        tempTour.Types.Add(currenType);
 
                 }
 
@@ -62,7 +62,7 @@ namespace ToursApp
                 {
                     Console.WriteLine(ex.Message);
                 }
-                ToursBaseEntities.GetContext().Tour.Add(tempTour);
+                ToursBaseEntities.GetContext().Tours.Add(tempTour);
                 ToursBaseEntities.GetContext().SaveChanges();
             }
         }

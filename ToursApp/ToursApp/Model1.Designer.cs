@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\kvm04\Source\Repos\ToursApp\ToursApp\ToursApp\BaseModel.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\kvm04\source\repos\ToursApp\ToursApp\ToursApp\Model1.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

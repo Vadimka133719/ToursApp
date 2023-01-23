@@ -18,27 +18,27 @@ namespace ToursApp
         private static ToursBaseEntities _context;
         public ToursBaseEntities()
             : base("name=ToursBaseEntities")
-        { 
+        {
         }
-        
+
         public static ToursBaseEntities GetContext()
-            {
-            if(_context==null)
+        {
+            if (_context == null)
                 _context = new ToursBaseEntities();
-            return _context;    
+            return _context;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<County> County { get; set; }
-        public virtual DbSet<Hotel> Hotel { get; set; }
-        public virtual DbSet<HotelComment> HotelComment { get; set; }
-        public virtual DbSet<HotelImage> HotelImage { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tour> Tour { get; set; }
-        public virtual DbSet<Type> Type { get; set; }
+        public virtual DbSet<County> Counties { get; set; }
+        public virtual DbSet<Hotel> Hotels { get; set; }
+        public virtual DbSet<HotelComment> HotelComments { get; set; }
+        public virtual DbSet<HotelImage> HotelImages { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Tour> Tours { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
     }
 }

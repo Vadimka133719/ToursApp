@@ -27,7 +27,7 @@ namespace ToursApp
             if(selectedHotel!= null)
                 _currentHotel = selectedHotel;
             DataContext = _currentHotel;
-            ComboCountries.ItemsSource = ToursBaseEntities.GetContext().County.ToList();
+            ComboCountries.ItemsSource = ToursBaseEntities.GetContext().Counties.ToList();
         }
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace ToursApp
                 return;
             }
             if (_currentHotel.Id == 0)
-                ToursBaseEntities.GetContext().Hotel.Add(_currentHotel);
+                ToursBaseEntities.GetContext().Hotels.Add(_currentHotel);
             try 
             { 
                 ToursBaseEntities.GetContext().SaveChanges();

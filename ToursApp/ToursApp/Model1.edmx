@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CountOfStars" Type="int" Nullable="false" />
           <Property Name="CountryCode" Type="nchar" MaxLength="2" Nullable="false" />
@@ -25,7 +25,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelId" Type="int" Nullable="false" />
           <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Author" Type="nvarchar" MaxLength="1000" Nullable="false" />
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelId" Type="int" Nullable="false" />
           <Property Name="ImageSource" Type="varbinary(max)" Nullable="false" />
         </EntityType>
@@ -61,7 +61,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TicketCount" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -219,26 +219,26 @@
           </Key>
           <Property Name="Code" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_County" FromRole="County" ToRole="Hotel" />
+          <NavigationProperty Name="Hotels" Relationship="Self.FK_Hotel_County" FromRole="County" ToRole="Hotel" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CountOfStars" Type="Int32" Nullable="false" />
           <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="County" Relationship="Self.FK_Hotel_County" FromRole="Hotel" ToRole="County" />
-          <NavigationProperty Name="HotelComment" Relationship="Self.FK_HotelComment_Hotel" FromRole="Hotel" ToRole="HotelComment" />
-          <NavigationProperty Name="HotelImage" Relationship="Self.FK_HotelImage_Hotel" FromRole="Hotel" ToRole="HotelImage" />
-          <NavigationProperty Name="Tour" Relationship="Self.HotelOfTour" FromRole="Hotel" ToRole="Tour" />
+          <NavigationProperty Name="HotelComments" Relationship="Self.FK_HotelComment_Hotel" FromRole="Hotel" ToRole="HotelComment" />
+          <NavigationProperty Name="HotelImages" Relationship="Self.FK_HotelImage_Hotel" FromRole="Hotel" ToRole="HotelImage" />
+          <NavigationProperty Name="Tours" Relationship="Self.HotelOfTour" FromRole="Hotel" ToRole="Tour" />
         </EntityType>
         <EntityType Name="HotelComment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelId" Type="Int32" Nullable="false" />
           <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Author" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
@@ -249,12 +249,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelId" Type="Int32" Nullable="false" />
           <Property Name="ImageSource" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImage_Hotel" FromRole="HotelImage" ToRole="Hotel" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -268,15 +268,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TicketCount" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ImagePreview" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="IsActual" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Hotel" Relationship="Self.HotelOfTour" FromRole="Tour" ToRole="Hotel" />
-          <NavigationProperty Name="Type" Relationship="Self.TypeOfTour" FromRole="Tour" ToRole="Type" />
+          <NavigationProperty Name="Hotels" Relationship="Self.HotelOfTour" FromRole="Tour" ToRole="Hotel" />
+          <NavigationProperty Name="Types" Relationship="Self.TypeOfTour" FromRole="Tour" ToRole="Type" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -285,7 +285,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tour" Relationship="Self.TypeOfTour" FromRole="Type" ToRole="Tour" />
+          <NavigationProperty Name="Tours" Relationship="Self.TypeOfTour" FromRole="Type" ToRole="Tour" />
         </EntityType>
         <Association Name="FK_Hotel_County">
           <End Role="County" Type="Self.County" Multiplicity="1" />
@@ -332,32 +332,32 @@
           <End Role="Type" Type="Self.Type" Multiplicity="*" />
         </Association>
         <EntityContainer Name="ToursBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="County" EntityType="Self.County" />
-          <EntitySet Name="Hotel" EntityType="Self.Hotel" />
-          <EntitySet Name="HotelComment" EntityType="Self.HotelComment" />
-          <EntitySet Name="HotelImage" EntityType="Self.HotelImage" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tour" EntityType="Self.Tour" />
-          <EntitySet Name="Type" EntityType="Self.Type" />
+          <EntitySet Name="Counties" EntityType="Self.County" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="HotelComments" EntityType="Self.HotelComment" />
+          <EntitySet Name="HotelImages" EntityType="Self.HotelImage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
           <AssociationSet Name="FK_Hotel_County" Association="Self.FK_Hotel_County">
-            <End Role="County" EntitySet="County" />
-            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="County" EntitySet="Counties" />
+            <End Role="Hotel" EntitySet="Hotels" />
           </AssociationSet>
           <AssociationSet Name="FK_HotelComment_Hotel" Association="Self.FK_HotelComment_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="HotelComment" EntitySet="HotelComment" />
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelComment" EntitySet="HotelComments" />
           </AssociationSet>
           <AssociationSet Name="FK_HotelImage_Hotel" Association="Self.FK_HotelImage_Hotel">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="HotelImage" EntitySet="HotelImage" />
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelImage" EntitySet="HotelImages" />
           </AssociationSet>
           <AssociationSet Name="HotelOfTour" Association="Self.HotelOfTour">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Tour" EntitySet="Tours" />
           </AssociationSet>
           <AssociationSet Name="TypeOfTour" Association="Self.TypeOfTour">
-            <End Role="Tour" EntitySet="Tour" />
-            <End Role="Type" EntitySet="Type" />
+            <End Role="Tour" EntitySet="Tours" />
+            <End Role="Type" EntitySet="Types" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -366,7 +366,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ToursBaseModelContainer" CdmEntityContainer="ToursBaseEntities">
-          <EntitySetMapping Name="County">
+          <EntitySetMapping Name="Counties">
             <EntityTypeMapping TypeName="ToursBaseModel.County">
               <MappingFragment StoreEntitySet="County">
                 <ScalarProperty Name="Code" ColumnName="Code" />
@@ -374,7 +374,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Hotel">
+          <EntitySetMapping Name="Hotels">
             <EntityTypeMapping TypeName="ToursBaseModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -384,7 +384,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HotelComment">
+          <EntitySetMapping Name="HotelComments">
             <EntityTypeMapping TypeName="ToursBaseModel.HotelComment">
               <MappingFragment StoreEntitySet="HotelComment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -395,7 +395,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HotelImage">
+          <EntitySetMapping Name="HotelImages">
             <EntityTypeMapping TypeName="ToursBaseModel.HotelImage">
               <MappingFragment StoreEntitySet="HotelImage">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -405,7 +405,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ToursBaseModel.sysdiagrams">
+            <EntityTypeMapping TypeName="ToursBaseModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -415,7 +415,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tour">
+          <EntitySetMapping Name="Tours">
             <EntityTypeMapping TypeName="ToursBaseModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -428,7 +428,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Type">
+          <EntitySetMapping Name="Types">
             <EntityTypeMapping TypeName="ToursBaseModel.Type">
               <MappingFragment StoreEntitySet="Type">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -467,7 +467,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

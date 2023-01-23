@@ -17,9 +17,9 @@ namespace ToursApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Hotel()
         {
-            this.HotelComment = new HashSet<HotelComment>();
-            this.HotelImage = new HashSet<HotelImage>();
-            this.Tour = new HashSet<Tour>();
+            this.HotelComments = new HashSet<HotelComment>();
+            this.HotelImages = new HashSet<HotelImage>();
+            this.Tours = new HashSet<Tour>();
         }
     
         public int Id { get; set; }
@@ -29,10 +29,10 @@ namespace ToursApp
     
         public virtual County County { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelComment> HotelComment { get; set; }
+        public virtual ICollection<HotelComment> HotelComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelImage> HotelImage { get; set; }
+        public virtual ICollection<HotelImage> HotelImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tour { get; set; }
+        public virtual ICollection<Tour> Tours { get; set; }
     }
 }

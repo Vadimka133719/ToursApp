@@ -17,7 +17,7 @@ namespace ToursApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Type()
         {
-            this.Tour = new HashSet<Tour>();
+            this.Tours = new HashSet<Tour>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace ToursApp
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tour { get; set; }
+        public virtual ICollection<Tour> Tours { get; set; }
     }
 }

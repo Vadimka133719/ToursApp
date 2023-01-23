@@ -86,3 +86,5 @@ C:\Users\kvm04\Source\Repos\ToursApp\ToursApp\ToursApp\bin\Debug\EntityFramework
 C:\Users\kvm04\Source\Repos\ToursApp\ToursApp\ToursApp\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\kvm04\Source\Repos\ToursApp\ToursApp\ToursApp\bin\Debug\ru\EntityFramework.resources.dll
 C:\Users\kvm04\Source\Repos\ToursApp\ToursApp\ToursApp\obj\Debug\ToursApp.csproj.CopyComplete
+C:\Users\kvm04\source\repos\ToursApp\ToursApp\ToursApp\obj\Debug\ToursPage.g.cs
+C:\Users\kvm04\source\repos\ToursApp\ToursApp\ToursApp\obj\Debug\ToursPage.baml
